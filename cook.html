@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香浓咖啡屋</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="banner">
+        <h1>香浓咖啡屋</h1>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">咖啡器具</h2>
+
+        <div class="equipment-section">
+            <div class="equipment-content">
+                <img src="images/cooker.jpg" alt="咖啡器具">
+                <div class="equipment-text">
+                    <h3>咖啡器具介绍</h3>
+                    <p>咖啡器具，指磨制、煮制、品尝咖啡的器具。较有特色的咖啡器具有蒸汽加压咖啡器、虹吸咖啡器具、浓缩咖啡器、直桶形的浓缩咖啡器等，是咖啡文化的重要组成部分。</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">调查表单</h2>
+
+        <div class="survey-container">
+            <div class="survey-title">调查</div>
+
+            <div class="form-item">
+                <label class="form-label">喜欢的品牌</label>
+                <input type="text" class="form-input" placeholder="请输入喜欢的品牌">
+            </div>
+
+            <div class="form-item">
+                <label class="form-label">产地</label>
+                <select class="form-select">
+                    <option value="中国" selected>中国</option>
+                    <option value="美国">美国</option>
+                    <option value="日本">日本</option>
+                    <option value="韩国">韩国</option>
+                    <option value="德国">德国</option>
+                </select>
+            </div>
+
+            <div class="form-item">
+                <label class="form-label">喜欢的原因</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="reason" value="外观"> 外观
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="reason" value="功能"> 功能
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="reason" value="价格"> 价格
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-item textarea-item">
+                <label class="form-label">其他原因...</label>
+                <textarea class="form-textarea" placeholder="请填写其他喜欢的原因"></textarea>
+            </div>
+
+            <div class="form-item">
+                <label class="form-label">打分</label>
+                <div class="score-group">
+                    <label class="score-option">
+                        <input type="radio" name="score" value="1"> 1
+                    </label>
+                    <label class="score-option">
+                        <input type="radio" name="score" value="2"> 2
+                    </label>
+                    <label class="score-option">
+                        <input type="radio" name="score" value="3"> 3
+                    </label>
+                    <label class="score-option">
+                        <input type="radio" name="score" value="4"> 4
+                    </label>
+                    <label class="score-option">
+                        <input type="radio" name="score" value="5"> 5
+                    </label>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="form-btn" onclick="handleSubmit()">提交</button>
+                <button class="form-btn reset" onclick="handleReset()">重置</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 香浓咖啡屋 - 品味生活 感悟人生</p>
+        <a href="index.html" class="nav-link">查看菜单与咖啡信息</a>
+    </footer>
+
+    <script>
+        function handleSubmit() {
+            const brand = document.querySelector('.form-input').value;
+            const origin = document.querySelector('.form-select').value;
+            const reasons = Array.from(document.querySelectorAll('input[name="reason"]:checked')).map(item => item.value);
+            const otherReason = document.querySelector('.form-textarea').value;
+            const score = document.querySelector('input[name="score"]:checked')?.value;
+
+            if (!brand) {
+                alert('请输入喜欢的品牌！');
+                return;
+            }
+            if (!score) {
+                alert('请进行打分！');
+                return;
+            }
+
+            alert('感谢您的参与！');
+        }
+
+        function handleReset() {
+            document.querySelector('.form-input').value = '';
+            document.querySelector('.form-select').selectedIndex = 0;
+            document.querySelectorAll('input[name="reason"]').forEach(cb => cb.checked = false);
+            document.querySelector('.form-textarea').value = '';
+            document.querySelectorAll('input[name="score"]').forEach(rb => rb.checked = false);
+        }
+    </script>
+</body>
+</html>
